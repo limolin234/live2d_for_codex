@@ -23,6 +23,7 @@ boot().catch((error) => {
 });
 
 connectEvents();
+startStatePolling();
 
 async function boot() {
   setStatus('loading');
@@ -37,6 +38,8 @@ async function boot() {
   }
 }
 
+let lastActionTs = 0;
+
 function connectEvents() {
   const source = new EventSource(new URL('/events', bridgeUrl).toString());
 
@@ -46,11 +49,33 @@ function connectEvents() {
   });
 
   source.addEventListener('error', () => {
-    setStatus('bridge offline');
+    setStatus('bridge reconnecting');
   });
 }
 
+function startStatePolling() {
+  const poll = async () => {
+    try {
+      const response = await fetch(new URL('/state', bridgeUrl), { cache: 'no-store' });
+      if (!response.ok) {
+        return;
+      }
+
+      const action = (await response.json()) as Live2DAction;
+      if ((action.ts ?? 0) !== lastActionTs) {
+        applyAction(action);
+      }
+    } catch {
+      setStatus('bridge offline');
+    }
+  };
+
+  window.setInterval(poll, 1000);
+  poll();
+}
+
 function applyAction(action: Live2DAction) {
+  lastActionTs = action.ts ?? Date.now();
   setStatus(action.state);
   showBubble(action.bubble ?? '');
   controller.apply(action).catch(() => {

@@ -4,13 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev:bridge": "node bridge/server.mjs",
+    "dev:bridge": "node scripts/codex-live2d.mjs bridge",
     "dev:viewer": "vite --host 127.0.0.1",
     "dev": "npm run dev:bridge & npm run dev:viewer",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "hook:test": "node scripts/send-test-event.mjs",
-    "hook:install:print": "node scripts/print-codex-hook-config.mjs"
+    "hook:install:print": "node scripts/print-codex-hook-config.mjs",
+    "app": "node scripts/codex-live2d.mjs app",
+    "window": "node scripts/codex-live2d.mjs window"
   },
   "dependencies": {
     "pixi-live2d-display": "^0.4.0",

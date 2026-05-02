@@ -46,17 +46,26 @@ for local testing.
 
 ## Start
 
-Run these in two terminals:
+One-command start, with the bridge and viewer launched together:
+
+```bash
+npm run app
+```
+
+For a less browser-like window, use Chrome/Chromium app mode:
+
+```bash
+npm run window
+```
+
+You can still run pieces separately for debugging:
 
 ```bash
 npm run dev:bridge
-```
-
-```bash
 npm run dev:viewer -- --port 5173
 ```
 
-Open the sample Live2D model:
+Open the sample Live2D model manually if needed:
 
 ```text
 http://127.0.0.1:5173/?model=/models/sample/Mao/Mao.model3.json
@@ -98,10 +107,10 @@ This repo is configured with project-level hooks:
 .codex/hooks.json
 ```
 
-The hook command is:
+The hook commands call the unified entry and pass the hook name explicitly, for example:
 
 ```bash
-node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs
+node $(git rev-parse --show-toplevel)/scripts/codex-live2d.mjs hook PreToolUse
 ```
 
 The hook writes to:
