@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.vite/
+.codex-live2d/
+.env
+.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local copyrighted/third-party Live2D assets.
+public/models/plana-local/**
+!public/models/plana-local/README.md
+public/models/*-local/**
+!public/models/*-local/README.md
+
+# Optional locally supplied Cubism Core runtime files.
+public/live2d-core/**
+!public/live2d-core/README.md

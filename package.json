@@ -1,0 +1,23 @@
+{
+  "name": "codex-live2d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:bridge": "node bridge/server.mjs",
+    "dev:viewer": "vite --host 127.0.0.1",
+    "dev": "npm run dev:bridge & npm run dev:viewer",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "hook:test": "node scripts/send-test-event.mjs",
+    "hook:install:print": "node scripts/print-codex-hook-config.mjs"
+  },
+  "dependencies": {
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.5.10",
+    "vite": "^5.4.21"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "command": "node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "command": "node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "command": "node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs"
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "command": "node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "command": "node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs"
+      }
+    ],
+    "Stop": [
+      {
+        "command": "node $(git rev-parse --show-toplevel)/scripts/codex-live2d-hook.mjs"
+      }
+    ]
+  }
+}

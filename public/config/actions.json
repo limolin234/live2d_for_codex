@@ -1,0 +1,42 @@
+{
+  "idle": {
+    "expression": "exp_01",
+    "motion": { "group": "Idle", "index": 0 },
+    "bubble": ""
+  },
+  "listening": {
+    "expression": "exp_02",
+    "motion": { "group": "TapBody", "index": 0 },
+    "bubble": "收到任务。"
+  },
+  "reading": {
+    "expression": "exp_03",
+    "motion": { "group": "Idle", "index": 1 },
+    "bubble": "正在查看相关文件。"
+  },
+  "coding": {
+    "expression": "exp_04",
+    "motion": { "group": "TapBody", "index": 1 },
+    "bubble": "正在修改代码。"
+  },
+  "running": {
+    "expression": "exp_04",
+    "motion": { "group": "TapBody", "index": 2 },
+    "bubble": "正在执行命令。"
+  },
+  "asking": {
+    "expression": "exp_06",
+    "motion": { "group": "TapBody", "index": 3 },
+    "bubble": "需要你确认权限。"
+  },
+  "succeeded": {
+    "expression": "exp_08",
+    "motion": { "group": "TapBody", "index": 4 },
+    "bubble": "这一步完成了。"
+  },
+  "failed": {
+    "expression": "exp_07",
+    "motion": { "group": "TapBody", "index": 5 },
+    "bubble": "这一步失败了，我在看原因。"
+  }
+}
