@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { initialState, eventToAction } from '../bridge/state.mjs';
 import { polishAction } from '../bridge/llm.mjs';
+import { createViewerExRelay } from '../bridge/viewerex.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, '..');
@@ -94,6 +95,7 @@ function postJson(value) {
 
 function runBridge() {
   const clients = new Set();
+  const viewerExRelay = createViewerExRelay();
   let currentAction = initialState();
   let lastBroadcastAt = 0;
   let idleTimer = null;
@@ -149,6 +151,9 @@ function runBridge() {
   server.listen(bridgePort, host, () => {
     console.log(`codex-live2d bridge listening on http://${host}:${bridgePort}`);
     console.log(`codex-live2d queue ${queueFile}`);
+    if (viewerExRelay.enabled) {
+      console.log(`viewerex relay enabled ${viewerExRelay.url}`);
+    }
     startQueuePoller();
   });
 
@@ -166,6 +171,7 @@ function runBridge() {
     }
 
     lastBroadcastAt = now;
+    viewerExRelay.sendAction(action);
     const payload = `event: action\ndata: ${JSON.stringify(action)}\n\n`;
     for (const client of clients) {
       client.write(payload);
